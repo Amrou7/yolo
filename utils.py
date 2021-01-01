@@ -172,7 +172,7 @@ def print_objects(boxes, class_names):
             print('%i. %s: %f' % (i + 1, class_names[cls_id], cls_conf))
 
             
-def plot_boxes(img, boxes, target, class_names, plot_labels=True , predicted=True , ground_truth = True):
+def plot_boxes(img, boxes, target, class_names, category_names, plot_labels=True , predicted=True , ground_truth = True):
     
     # Define a tensor used to set the colors of the bounding boxes
     colors = torch.FloatTensor([[1,0,1],[0,0,1],[0,1,1],[0,1,0],[1,1,0],[1,0,0]])
@@ -264,7 +264,7 @@ def plot_boxes(img, boxes, target, class_names, plot_labels=True , predicted=Tru
         width_y = np.round(box[3])
         x2 = x1 + width_x
         y1 = y2 + width_y
-        label = class_names[obj['category_id'] - 1]
+        label = category_names[obj['category_id'] - 1]
         color = (0,1,0)
         rect = patches.Rectangle((x1, y2),
                                   width_x, width_y,
