@@ -172,7 +172,7 @@ def print_objects(boxes, class_names):
             print('%i. %s: %f' % (i + 1, class_names[cls_id], cls_conf))
 
             
-def plot_boxes(img, boxes, target, class_names, plot_labels, color = None , predicted=True , ground_truth = True):
+def plot_boxes(img, boxes, target, class_names, plot_labels=True , predicted=True , ground_truth = True):
     
     # Define a tensor used to set the colors of the bounding boxes
     colors = torch.FloatTensor([[1,0,1],[0,0,1],[0,1,1],[0,1,0],[1,1,0],[1,0,0]])
@@ -224,10 +224,8 @@ def plot_boxes(img, boxes, target, class_names, plot_labels, color = None , pred
               blue  = get_color(0, offset, classes) / 255
               
               # If a color is given then set rgb to the given color instead
-              if color is None:
-                  rgb = (red, green, blue)
-              else:
-                  rgb = color
+              rgb = (red, green, blue)
+              
           
           # Calculate the width and height of the bounding box relative to the size of the image.
           width_x = x2 - x1
