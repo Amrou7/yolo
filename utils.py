@@ -258,12 +258,12 @@ def plot_boxes(img, boxes, target, class_names, plot_labels=True , predicted=Tru
     if ground_truth==True:
       for obj in target:
         box = obj['bbox']
-        x1 = int(box[0])
-        y1 = int(box[1])
+        x1 = np.round(box[0])
+        y2 = np.round(box[1])
         width_x = np.round(box[2])
         width_y = np.round(box[3])
         x2 = x1 + width_x
-        y2 = y1 - width_y
+        y1 = y2 + width_y
         label = class_names[obj['category_id']]
         color = (0,1,0)
         rect = patches.Rectangle((x1, y2),
@@ -273,8 +273,8 @@ def plot_boxes(img, boxes, target, class_names, plot_labels=True , predicted=Tru
                                   facecolor = 'none')
         a.add_patch(rect)
         conf_tx = class_names[obj['category_id']] + ': {:.1f}'.format(1)
-        lxc = (img.shape[1] * 0.266) / 100
-        lyc = (img.shape[0] * 1.180) / 100
+        lxc = (width_x * 0.266) 
+        lyc = (width_y * 1.180) 
         a.text(x1 + lxc, y1 - lyc, conf_tx, fontsize = 12, color = 'k',
                     bbox = dict(facecolor = (0,1,0), edgecolor = (0,1,0), alpha = 0.4))
           
