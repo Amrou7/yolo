@@ -279,15 +279,15 @@ def get_region_boxes(output, conf_thresh, num_classes, anchors, num_anchors, onl
     
     sz_hw = h*w
     sz_hwa = sz_hw*num_anchors
-    det_confs = convert2cpu(det_confs)
-    cls_max_confs = convert2cpu(cls_max_confs)
-    cls_max_ids = convert2cpu_long(cls_max_ids)
-    xs = convert2cpu(xs)
-    ys = convert2cpu(ys)
-    ws = convert2cpu(ws)
-    hs = convert2cpu(hs)
-    if validation:
-        cls_confs = convert2cpu(cls_confs.view(-1, num_classes))
+    #det_confs = convert2cpu(det_confs)
+    #cls_max_confs = convert2cpu(cls_max_confs)
+    #cls_max_ids = convert2cpu_long(cls_max_ids)
+    #xs = convert2cpu(xs)
+    #ys = convert2cpu(ys)
+    #ws = convert2cpu(ws)
+    #hs = convert2cpu(hs)
+    #if validation:
+        #cls_confs = convert2cpu(cls_confs.view(-1, num_classes))
 
     for b in range(batch):
         boxes = []
