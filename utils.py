@@ -101,7 +101,7 @@ def nms(boxes, iou_thresh):
 def detect_objects(model, img, iou_thresh, nms_thresh):
     
     # Start the time. This is done to calculate how long the detection takes.
-    #start = time.time()
+    start = time.time()
     
     # Set the model to evaluation mode.
     model.eval()
@@ -120,14 +120,15 @@ def detect_objects(model, img, iou_thresh, nms_thresh):
     
     # Make a new list with all the bounding boxes returned by the neural network
     boxes = list_boxes[0][0] + list_boxes[1][0] + list_boxes[2][0]
+    # Stop the time. 
+    finish = time.time()
     
     # Perform the second step of NMS on the bounding boxes returned by the neural network.
     # In this step, we only keep the best bounding boxes by eliminating all the bounding boxes
     # whose IOU value is higher than the given IOU threshold
     boxes = nms(boxes, iou_thresh)
     
-    # Stop the time. 
-    #finish = time.time()
+    
     
     # Print the time it took to detect objects
     #print('\n\nIt took {:.3f}'.format(finish - start), 'seconds to detect the objects in the image.\n')
@@ -135,7 +136,7 @@ def detect_objects(model, img, iou_thresh, nms_thresh):
     # Print the number of objects detected
     #print('Number of Objects Detected:', len(boxes), '\n')
     
-    return boxes
+    return boxes , finish - start
 
 
 def load_class_names(namesfile):
