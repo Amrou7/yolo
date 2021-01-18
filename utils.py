@@ -200,6 +200,8 @@ def plot_boxes(img, boxes, target, class_names, category_names, plot_labels=True
     # Plot the bounding boxes and corresponding labels on top of the image
     if predicted==True:
       for i in range(len(boxes)):
+          # Get the ith bounding box
+          box = boxes[i]
           test = False
           try:
             ok = labelss.index(class_names[ box[6] ])
