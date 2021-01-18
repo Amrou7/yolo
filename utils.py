@@ -219,7 +219,7 @@ def plot_boxes(img, boxes, target, class_names, category_names, plot_labels=True
           box = boxes[i]
           test = False
           try:
-            ok = labelss.index(class_names[ box[6] ])
+            ok = labelss.index(rename( class_names[ box[6] ]) )
             test=True
           except:
             test = False
