@@ -4,6 +4,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
+def rename(name):
+  if name=='tvmonitor':
+    return 'tv'
+  if name=='diningtable':
+    return 'dining table'
+  if name=='pottedplant':
+    return 'potted plant'
+  if name=='sofa':
+    return 'couch'
+  if name=='aeroplane':
+    return 'airplane'
+  if name=='motorbike':
+    return 'motorcycle'
+  return name
+
 
 def boxes_iou(box1, box2):
   
@@ -170,7 +185,7 @@ def print_objects(boxes, class_names):
         if len(box) >= 7 and class_names:
             cls_conf = box[5]
             cls_id = box[6]
-            print('%i. %s: %f' % (i + 1, class_names[cls_id], cls_conf))
+            print('%i. %s: %f' % (i + 1, rename( class_names[cls_id] ), cls_conf))
 
             
 def plot_boxes(img, boxes, target, class_names, category_names, plot_labels=True , predicted=True , ground_truth = True, labelss=[]):
@@ -257,7 +272,7 @@ def plot_boxes(img, boxes, target, class_names, category_names, plot_labels=True
             if plot_labels:
                 
                 # Create a string with the object class name and the corresponding object class probability
-                conf_tx = class_names[cls_id] + ': {:.1f}'.format(cls_conf)
+                conf_tx = rename(class_names[cls_id]) + ': {:.1f}'.format(cls_conf)
                 
                 # Define x and y offsets for the labels
                 lxc = (img.shape[1] * 0.266) / 100
